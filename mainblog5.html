@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>The Complete AI Product Development Lifecycle Explained | Codensys Blog</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta
+        content="AI Product Development, Machine Learning Lifecycle, AI Model Deployment, AI Development Process, AI Product Design, Codensys Blog"
+        name="keywords">
+    <meta
+        content="Explore the end-to-end AI product development lifecycle—from problem definition and data collection to model deployment and maintenance. Learn how Codensys builds AI products."
+        name="description">
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        th {
+            padding: 16px;
+            font-size: 18px;
+            text-align: center;
+            border-right: 2px solid #3a7bb2;
+
+        }
+
+        @media (max-width: 768px) {
+            .banner {
+                height: 15vh;
+                padding: 1rem;
+            }
+
+            .banner-content {
+                padding: 50px 30px;
+            }
+
+            .banner-content small {
+                font-size: 0.9rem;
+            }
+
+            .banner-content h1 {
+                font-size: .9rem;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                border-radius: 0px;
+                box-shadow: 0 0 0;
+            }
+
+            .containerr {
+                display: block;
+            }
+
+            .article-content {
+                padding: 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .section p {
+                font-size: 1rem;
+            }
+
+            .step-card {
+                border-radius: .5rem;
+                padding: 1rem;
+            }
+
+            .step-text p {
+                font-size: 12px;
+            }
+
+            .step-text h3 {
+                font-size: 12px;
+            }
+
+            .step-number {
+                font-size: 1rem;
+            }
+
+            .step-content {
+                flex-direction: row;
+            }
+
+            .highlight-box h2 {
+                font-size: 18px;
+            }
+
+            .highlight-box p {
+                font-size: 14px;
+            }
+
+            table th {
+                padding: 6px;
+                font-size: 10px;
+            }
+
+            td {
+                width: 10px;
+                font-size: 12px;
+                padding-left: 10px;
+            }
+        }
+
+        .containerr {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 1rem;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 3rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-marker {
+            width: 4px;
+            height: 2rem;
+            border-radius: 2px;
+        }
+
+        .section:nth-child(1) .section-marker {
+            background: linear-gradient(to bottom, #7c3aed, #3730a3);
+        }
+
+        .section:nth-child(2) .section-marker {
+            background: linear-gradient(to bottom, #06b6d4, #0284c7);
+        }
+
+        .section:nth-child(3) .section-marker {
+            background: linear-gradient(to bottom, #10b981, #059669);
+        }
+
+        .section:nth-child(4) .section-marker {
+            background: linear-gradient(to bottom, #f59e0b, #dc2626);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f3e8ff 0%, #e0e7ff 100%);
+            padding: 2rem;
+            border-radius: 1rem;
+            border-left: 4px solid #7c3aed;
+            margin: 2rem 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-box h3 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .feature-box ul {
+            list-style: none;
+        }
+
+        .feature-box li {
+            margin: 0.5rem 0;
+            color: #4b5563;
+        }
+
+        .principle-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .principle-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, #fef3cd 0%, #fecaca 100%);
+            padding: 3rem;
+            border-radius: 1rem;
+            border: 1px solid #f59e0b;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .quote-text {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #1f2937;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .quote-author {
+            color: #6b7280;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .toc {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .toc h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc a {
+            display: block;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            color: #6b7280;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .toc a:hover,
+        .toc a.active {
+            background-color: #4793d2;
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .progress-barr {
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .progress-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #7c3aed, #3730a3);
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        .related-articles {
+            margin-top: 4rem;
+            padding: 3rem;
+        }
+
+        .related-articles h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #1f2937;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-category {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .read-more {
+            color: #7c3aed;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .read-more:hover {
+            color: #5b21b6;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #a855f7, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer p {
+            color: #d1d5db;
+            line-height: 1.6;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer li {
+            margin: 0.5rem 0;
+        }
+
+        .footer a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #a855f7;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .responsive-table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .responsive-table-container table {
+                width: 100%;
+                min-width: 600px;
+                border-collapse: collapse;
+            }
+
+            .responsive-table-container th,
+            .responsive-table-container td {
+                white-space: nowrap;
+                text-align: left;
+                padding: 12px;
+            }
+        }
+
+        .banner {
+            position: relative;
+            height: 400px;
+            color: white;
+            overflow: hidden;
+            border-radius: 20px;
+            margin: 30px;
+            background-image: url("AIML_servicee.webp");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(10, 25, 45, 0.6);
+            /* Dark overlay for better text visibility */
+            z-index: 1;
+        }
+
+        .banner-content {
+            position: relative;
+            padding: 100px 60px;
+            z-index: 2;
+        }
+
+        .banner small {
+            letter-spacing: 0.2em;
+            color: #ccc;
+            font-weight: bold;
+            color: white;
+        }
+
+        .banner h1 {
+            font-size: 42px;
+            margin: 15px 0 0;
+            line-height: 1.3;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .banner {
+                height: auto;
+                padding: 60px 20px;
+            }
+
+            .banner h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+
+    <style>
+
+    </style>
+
+    <style>
+
+
+    </style>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <!--<h2 class="m-0 text-primary">Codensys</h2>-->
+            <img src="Logo-Codensys.webp" style="width: 300px; height: 300px;">
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">What We Offer</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="DT.html" class="dropdown-item">Digital Transformation</a>
+                        <a href="CS.html" class="dropdown-item">Custom Software Development</a>
+                        <a href="AimachineL.html" class="dropdown-item">AI &amp; Machine Learning</a>
+                        <a href="WD.html" class="dropdown-item">Web & Mobile App Development</a>
+                        <a href="CD.html" class="dropdown-item">Cloud &amp; DevOps Solutions</a>
+                        <a href="CSC.html" class="dropdown-item">Cybersecurity &amp; Compliance</a>
+                        <a href="SA.html" class="dropdown-item">Staff Augmentation</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Blogs</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="mainblog1.html" class="dropdown-item">The Digital Age and Business Transformation</a>
+                        <a href="mainblog2.html" class="dropdown-item">Custom Software vs Off-the-Shelf Solutions</a>
+                        <a href="mainblog3.html" class="dropdown-item">How AI&ML are Revolutionizing Business
+                            Operations</a>
+                        <a href="mainblog4.html" class="dropdown-item">CX Journey Optimization Using AI</a>
+                        <a href="mainblog5.html" class="dropdown-item active">The AI Product Development Lifecycle</a>
+                        <a href="mainblog6.html" class="dropdown-item">Supercharging Enterprise Application Development
+                            <br> with AI Tools like GitHub Copilot</a>
+                    </div>
+                </div>
+                <a href="careers.html" class="nav-item nav-link">Careers</a>
+                <a href="contact.html" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="quote.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block hovver">Build With Us<i
+                    class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+    </nav>
+    <div class="banner">
+        <div class="overlay"></div>
+        <div class="banner-content">
+            <small> BLOG</small>
+            <h1>The AI Product Development Lifecycle: From Idea to Impact</h1>
+        </div>
+    </div>
+    <div class="containerr">
+        <main class="main-content">
+            <div class="article-content">
+                <section id="customization" class="section">
+                    <h2>
+                        <div class="section-marker"></div>
+                        Introduction
+                    </h2>
+                    <p style="margin-bottom: 1rem;">
+                        Artificial Intelligence (AI) is no longer a futuristic concept—it's a fundamental part of how
+                        modern businesses innovate, compete, and grow. Whether it's automating tasks, personalizing user
+                        experiences, predicting trends, or powering intelligent decision-making, AI is transforming
+                        every industry.
+                    </p>
+                    <p>
+                        However, building a successful AI product isn't just about writing smart algorithms. It requires
+                        a structured, strategic, and iterative approach. In this blog, we’ll walk you through the AI
+                        Product Development Lifecycle—the essential phases that take an AI product from concept to
+                        customer-ready.
+                    </p>
+                </section>
+                <section id="middle" class="section">
+                    <h2>
+                        <div class="section-marker"></div>
+                        How AI is Revolutionizing CX Journey Optimization
+                    </h2>
+                    <h4>Phase 1: Problem Definition & Business Alignment</h4>
+                    <p style="margin-left: 2rem;">AI helps visualize complex customer journeys using real-time behavior
+                        data. By aggregating touchpoints across web, mobile, email, social media, and support channels,
+                        AI creates a dynamic, 360-degree customer journey map.</p>
+                    <ul>
+                        <li>Understanding user pain points</li>
+                        <li>Defining measurable goals (e.g., reduce churn by 15%, automate 60% of support queries) </li>
+                        <li>Aligning with business strategy</li>
+                        <li>Assessing data availability and feasibility</li>
+                    </ul>
+                    <p style="margin-left: 2rem;"><strong>Tip: </strong>Not every problem requires AI. Be clear about
+                        the “why”</p>
+
+                    <h4>Phase 2: Data Strategy & Collection</h4>
+                    <p style="margin-left: 2rem;">AI thrives on data. In this phase, focus on collecting, cleaning, and
+                        organizing the right datasets. Activities include:</p>
+                    <ul>
+                        <li>Identifying data sources (internal logs, customer behavior, IoT, third-party APIs)</li>
+                        <li>Ensuring data privacy compliance (GDPR, CCPA) </li>
+                        <li>Annotating and labeling datasets for supervised learning tasks </li>
+                        <li>Establishing data pipelines </li>
+                    </ul>
+                    <p style="margin-left: 2rem;"><strong>Remember: </strong>Poor data = poor AI. Your model is only as
+                        good as your data. </p>
+
+                    <h4>Phase 3: Model Development & Training</h4>
+                    <p style="margin-left: 2rem;">With clean data in hand, the technical work begins. This stage
+                        includes:</p>
+                    <ul>
+                        <li>Choosing the right model type (classification, regression, clustering, NLP, etc.) </li>
+                        <li>Training and validating models </li>
+                        <li>Tuning hyperparameters for optimal performance </li>
+                        <li>Testing for bias, accuracy, and fairness </li>
+                    </ul>
+                    <p style="margin-left: 2rem;">Tools like TensorFlow, PyTorch, Scikit-learn, and Hugging Face play a
+                        key role here. </p>
+
+                    <h4>Phase 4: Prototype & MVP Development</h4>
+                    <p style="margin-left: 2rem;">Once you have a working model, it's time to integrate it into a usable
+                        Minimum Viable Product (MVP). This includes:</p>
+                    <ul>
+                        <li>Building a front-end or API wrapper for the model</li>
+                        <li>Ensuring model inference is fast and scalable</li>
+                        <li>Gathering feedback from real users</li>
+                        <li>Performing A/B testing and performance tracking</li>
+                    </ul>
+                    <p style="margin-left: 2rem;">The MVP is where theory meets reality.</p>
+
+                    <h4>Phase 5: Deployment & Monitoring</h4>
+                    <p style="margin-left: 2rem;">After validation, the AI product is deployed in a production
+                        environment. Key considerations: </p>
+                    <ul>
+                        <li>CI/CD pipelines for model updates</li>
+                        <li>Monitoring tools for drift, performance, and outages</li>
+                        <li>Cloud or edge deployment options (AWS, GCP, Azure)</li>
+                        <li>Rollback mechanisms in case of failures</li>
+                    </ul>
+                    <p style="margin-left: 2rem;">Deployment is not a finish line—it’s the start of a continuous
+                        feedback loop. </p>
+
+                    <h4>Phase 6: Feedback Loop & Continuous Improvement</h4>
+                    <p style="margin-left: 2rem;">AI products must evolve with changing data and business needs. This
+                        phase includes:</p>
+                    <ul>
+                        <li>Continuous data collection and retraining</li>
+                        <li>Monitoring KPIs and adjusting models </li>
+                        <li>Updating UX based on user behavior </li>
+                        <li>Refining the product roadmap with new AI features </li>
+                    </ul>
+                    <p style="margin-left: 2rem;"><strong>AI is not static.</strong> Iteration is the name of the game.
+                    </p>
+                </section>
+                <section id="collaboration" class="section">
+                    <h2>
+                        <div class="section-marker"></div>
+                        Best Practices for AI Product Success
+                    </h2>
+                    <ul>
+                        <li>Start small, scale smart.</li>
+                        <li>Ensure explainability and ethical AI use.</li>
+                        <li>Collaborate across data science, engineering, and business teams.</li>
+                        <li>Stay agile—AI success depends on flexibility.</li>
+                    </ul>
+                </section>
+                <div class="highlight-box">
+                    <h2>
+                        Final Thoughts
+                    </h2>
+                    <p>
+                        Creating a high-impact AI product takes more than just data and algorithms. It requires a clear
+                        vision, a strong development process, and a commitment to continuous improvement. From ideation
+                        to iteration, every step matters.
+                    </p>
+                    <p>
+                        Whether you're building a chatbot, a recommendation engine, or a predictive analytics
+                        tool—following a structured AI Product Development Lifecycle ensures your innovation delivers
+                        real value.
+                    </p>
+                </div>
+
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <nav class="toc">
+                <h3>📋 Table of Contents</h3>
+                <ul style="padding-left: .5rem;">
+                    <li><a href="#customization" class="toc-link active">Introduction</a></li>
+                    <li><a href="#middle" class="toc-link">How AI is Revolutionizing CX Journey Optimization</a></li>
+                    <li><a href="#collaboration" class="toc-link">Best Practices for AI Product Success</a></li>
+                </ul>
+                <div class="progress-barr">
+                    <div class="progress-label">Reading Progress</div>
+                    <div class="progress-track">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+    </div>
+    <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Address</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>4th Floor, Unit No 405-411, Bizness Square,
+                        Jubilee Enclave, Hyderabad, Telangana- 500081</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 40-31001595</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@codensys.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social"
+                            href="https://www.facebook.com/profile.php?id=61578047060120" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="btn btn-outline-light btn-social"
+                            href="https://www.linkedin.com/in/codensys-technologies/" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a class="btn btn-outline-light btn-social" href="https://x.com/codensys" target="_blank">
+                            <i style="font-weight: bold; font-style: italic;">X</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="index.html">Home</a>
+                    <a class="btn btn-link" href="about.html">About Us</a>
+                    <a class="btn btn-link" href="contact.html">Contact Us</a>
+                    <a class="btn btn-link" href="quote.html">Build With Us</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Services</h4>
+                    <a class="btn btn-link" href="DT.html">Digital Transformation</a>
+                    <a class="btn btn-link" href="CS.html">Custom Software Development</a>
+                    <a class="btn btn-link" href="AimachineL.html">AI & Machine Learning</a>
+                    <a class="btn btn-link" href="WD.html">Web & Mobile App Development</a>
+                    <a class="btn btn-link" href="CD.html">Colud & DevOps Solutions</a>
+                    <a class="btn btn-link" href="CSC.html">Cybersecurity & Compliance</a>
+                    <a class="btn btn-link" href="SA.html">Staff Augmentation</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Blogs</h4>
+                    <a href="mainblog1.html" class="btn btn-link">The Digital Age and Business Transformation</a>
+                    <a href="mainblog2.html" class="btn btn-link">Custom Software vs Off-the-Shelf Solutions</a>
+                    <a href="mainblog3.html" class="btn btn-link">How AI&ML are Revolutionizing Business Operations</a>
+                    <a href="mainblog4.html" class="btn btn-link">CX Journey Optimization Using AI</a>
+                    <a href="mainblog5.html" class="btn btn-link">The AI Product Development Lifecycle</a>
+                    <a href="mainblog6.html" class="btn btn-link">Supercharging Enterprise Application Development <br>
+                        with AI Tools like GitHub Copilot</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">2025 Codensys</a>, All Right Reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top hovver"><i
+            class="bi bi-arrow-up"></i></a>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="main.js"></script>
+
+    <script>
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+
+                    document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    const links = document.querySelectorAll('.toc-link');
+                    const currentIndex = Array.from(links).indexOf(this);
+                    const progressFill = document.querySelector('.progress-fill');
+                    const progressPercent = ((currentIndex + 1) / links.length) * 100;
+                    progressFill.style.width = progressPercent + '%';
+                }
+            });
+        });
+
+        window.addEventListener('scroll', function () {
+            const sections = ['customization', 'middle', 'collaboration'];
+            let currentSection = '';
+
+            sections.forEach(sectionId => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        currentSection = sectionId;
+                    }
+                }
+            });
+
+            if (currentSection) {
+                document.querySelectorAll('.toc-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentSection) {
+                        link.classList.add('active');
+                        const links = document.querySelectorAll('.toc-link');
+                        const currentIndex = Array.from(links).indexOf(link);
+                        const progressFill = document.querySelector('.progress-fill');
+                        const progressPercent = ((currentIndex + 1) / links.length) * 100;
+                        progressFill.style.width = progressPercent + '%';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

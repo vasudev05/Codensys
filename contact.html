@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Contact Codensys | Get in Touch for Software Development & IT Services</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta
+        content="Contact Codensys, Software Development Contact, IT Services Contact, Hire Software Company, Software Development Inquiry, Codensys Contact Page"
+        name="keywords">
+    <meta
+        content="Reach out to Codensys for software development, mobile app development, AI solutions, and IT services. Contact us for project inquiries, partnerships, or support."
+        name="description">
+    <link href="img/favicon.ico" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        .form-container {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+            transform: scale(1);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: scale(1.02);
+            background: #4793d2;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .spinner {
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid white;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .popup-overlay.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Popup Modal */
+        .popup-modal {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            padding: 3rem;
+            max-width: 28rem;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            transform: scale(0.75) translateY(2rem);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+        }
+
+        .popup-overlay.visible .popup-modal {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 2rem;
+            height: 2rem;
+            background: #f3f4f6;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.25rem;
+            color: #6b7280;
+            transition: all 0.2s;
+            opacity: 0.5;
+        }
+
+        .close-btn:hover {
+            background: #e5e7eb;
+            opacity: 1;
+        }
+
+        .success-circle-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .success-circle {
+            width: 6rem;
+            height: 6rem;
+            background: #4793d2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 0 20px #4793d2;
+            transform: scale(0);
+            opacity: 0;
+            transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .success-circle.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .checkmark {
+            width: 3rem;
+            height: 3rem;
+            stroke: white;
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transform: scale(0);
+            opacity: 0;
+            transition: all 0.5s ease 0.2s;
+        }
+
+        .success-circle.visible .checkmark {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .checkmark path {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: checkmark-draw 0.8s ease 0.7s forwards;
+        }
+
+        .glow-effect {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6rem;
+            height: 6rem;
+            background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: pulse-glow 2s ease-in-out infinite 1s;
+        }
+
+        .success-text {
+            transform: translateY(1rem);
+            opacity: 0;
+            transition: all 0.7s ease 0.8s;
+        }
+
+        .success-text.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .success-text h2 {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .success-text p {
+            color: #6b7280;
+            font-size: 1.125rem;
+            line-height: 1.7;
+        }
+
+        .particle {
+            position: absolute;
+            width: 0.5rem;
+            height: 0.5rem;
+            background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .particle.animate {
+            animation: particle-float 2s ease-out forwards;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes checkmark-draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: translateX(-50%) scale(1);
+            }
+
+            50% {
+                opacity: 0.1;
+                transform: translateX(-50%) scale(1.2);
+            }
+        }
+
+        @keyframes particle-float {
+            0% {
+                opacity: 0;
+                transform: scale(0) translateY(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1) translateY(-1.25rem);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0) translateY(-2.5rem);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .popup-modal {
+                padding: 2rem;
+            }
+
+            .success-circle {
+                width: 5rem;
+                height: 5rem;
+            }
+
+            .checkmark {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+
+            .success-text h2 {
+                font-size: 1.5rem;
+            }
+
+            .success-text p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img src="Logo-Codensys.webp" style="width: 300px; height: 300px;">
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">What We Offer</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="DT.html" class="dropdown-item">Digital Transformation</a>
+                        <a href="CS.html" class="dropdown-item">Custom Software Development</a>
+                        <a href="AimachineL.html" class="dropdown-item">AI &amp; Machine Learning</a>
+                        <a href="WD.html" class="dropdown-item">Web & Mobile App Development</a>
+                        <a href="CD.html" class="dropdown-item">Cloud &amp; DevOps Solutions</a>
+                        <a href="CSC.html" class="dropdown-item">Cybersecurity &amp; Compliance</a>
+                        <a href="SA.html" class="dropdown-item">Staff Augmentation</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Blogs</a>
+                    <div class="dropdown-menu fade-up m-0">
+                        <a href="mainblog1.html" class="dropdown-item">The Digital Age and Business Transformation</a>
+                        <a href="mainblog2.html" class="dropdown-item">Custom Software vs Off-the-Shelf Solutions</a>
+                        <a href="mainblog3.html" class="dropdown-item">How AI&ML are Revolutionizing Business
+                            Operations</a>
+                        <a href="mainblog4.html" class="dropdown-item">CX Journey Optimization Using AI</a>
+                        <a href="mainblog5.html" class="dropdown-item">The AI Product Development Lifecycle</a>
+                        <a href="mainblog6.html" class="dropdown-item">Supercharging Enterprise Application Development
+                            <br> with AI Tools like GitHub Copilot</a>
+                    </div>
+                </div>
+                <a href="careers.html" class="nav-item nav-link">Careers</a>
+                <a href="contact.html" class="nav-item nav-link active">Contact</a>
+            </div>
+            <a href="quote.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block hovver">Build With Us<i
+                    class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+    </nav>
+
+    <div class="container-fluid bg-light overflow-hidden px-lg-0">
+        <div class="container contact px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-6 contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="p-lg-5 ps-lg-0">
+                        <div class="section-title text-start">
+                            <h1 class="display-5 mb-4">Contact Us</h1>
+                        </div>
+                        <p class="mb-4">Thank you for reaching out! Please provide the necessary details, and we'll
+                            respond to your inquiry promptly.</p>
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" name="name" class="form-control" id="name"
+                                            placeholder="Your Name" required>
+                                        <label for="name">Your Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" name="email" class="form-control" id="email"
+                                            placeholder="Your Email" required>
+                                        <label for="email">Your Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" name="subject" class="form-control" id="subject"
+                                            placeholder="Subject" required>
+                                        <label for="subject">Subject</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea name="message" class="form-control" placeholder="Leave a message here"
+                                            id="message" style="height: 100px" required></textarea>
+                                        <label for="message">Message</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3 submit-btn" type="submit" id="submitBtn">
+                                        <span id="submitText">Send Message</span>
+                                        <div id="loadingState" class="loading" style="display: none;">
+                                            <div class="spinner"></div>
+                                            <span>Submitting...</span>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div id="popupOverlay" class="popup-overlay">
+                                    <div class="popup-modal">
+                                        <button class="close-btn" id="closeBtn">&times;</button>
+                                        <div class="success-circle-container">
+                                            <div class="glow-effect"></div>
+                                            <div class="success-circle" id="successCircle">
+                                                <svg class="checkmark" viewBox="0 0 24 24">
+                                                    <path d="M20 6L9 17l-5-5" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="success-text" id="successText">
+                                            <h2>🎉 Thank you!</h2>
+                                            <p>Thank you for getting in touch! We’ve received your message and will
+                                                respond shortly.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6 pe-lg-0" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <iframe class="position-absolute w-100 h-100" style="object-fit: cover;"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2691.294250778127!2d78.37348469257702!3d17.45661090657822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb933e19c45969%3A0x323c6d2f7f360067!2sCodensys%20Technologies!5e0!3m2!1sen!2sin!4v1751264996040!5m2!1sen!2sin"
+                            frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Address</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>4th Floor, Unit No 405-411, Bizness Square,
+                        Jubilee Enclave, Hyderabad, Telangana- 500081</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 40-31001595</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@codensys.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social"
+                            href="https://www.facebook.com/profile.php?id=61578047060120" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="btn btn-outline-light btn-social"
+                            href="https://www.linkedin.com/in/codensys-technologies/" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a class="btn btn-outline-light btn-social" href="https://x.com/codensys" target="_blank">
+                            <i style="font-weight: bold; font-style: italic;">X</i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="index.html">Home</a>
+                    <a class="btn btn-link" href="about.html">About Us</a>
+                    <a class="btn btn-link" href="contact.html">Contact Us</a>
+                    <a class="btn btn-link" href="quote.html">Build With Us</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Services</h4>
+                    <a class="btn btn-link" href="DT.html">Digital Transformation</a>
+                    <a class="btn btn-link" href="CS.html">Custom Software Development</a>
+                    <a class="btn btn-link" href="AimachineL.html">AI & Machine Learning</a>
+                    <a class="btn btn-link" href="WD.html">Web & Mobile App Development</a>
+                    <a class="btn btn-link" href="CD.html">Colud & DevOps Solutions</a>
+                    <a class="btn btn-link" href="CSC.html">Cybersecurity & Compliance</a>
+                    <a class="btn btn-link" href="SA.html">Staff Augmentation</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Blogs</h4>
+                    <a href="mainblog1.html" class="btn btn-link">The Digital Age and Business Transformation</a>
+                    <a href="mainblog2.html" class="btn btn-link">Custom Software vs Off-the-Shelf Solutions</a>
+                    <a href="mainblog3.html" class="btn btn-link">How AI&ML are Revolutionizing Business Operations</a>
+                    <a href="mainblog4.html" class="btn btn-link">CX Journey Optimization Using AI</a>
+                    <a href="mainblog5.html" class="btn btn-link">The AI Product Development Lifecycle</a>
+                    <a href="mainblog6.html" class="btn btn-link">Supercharging Enterprise Application Development <br>
+                        with AI Tools like GitHub Copilot</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">2025 Codensys</a>, All Right Reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top hovver"><i
+            class="bi bi-arrow-up"></i></a>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        class ThankYouPopup {
+            constructor() {
+                this.form = document.getElementById('contactForm');
+                this.submitBtn = document.getElementById('submitBtn');
+                this.submitText = document.getElementById('submitText');
+                this.loadingState = document.getElementById('loadingState');
+                this.popupOverlay = document.getElementById('popupOverlay');
+                this.successCircle = document.getElementById('successCircle');
+                this.successText = document.getElementById('successText');
+                this.closeBtn = document.getElementById('closeBtn');
+                this.init();
+            }
+
+            init() {
+                this.form.addEventListener('submit', this.handleSubmit.bind(this));
+                this.closeBtn.addEventListener('click', this.hidePopup.bind(this));
+                this.popupOverlay.addEventListener('click', this.handleOverlayClick.bind(this));
+            }
+
+            async handleSubmit(e) {
+                e.preventDefault();
+                this.submitBtn.disabled = true;
+                this.submitText.style.display = 'none';
+                this.loadingState.style.display = 'flex';
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                this.submitBtn.disabled = false;
+                this.submitText.style.display = 'block';
+                this.loadingState.style.display = 'none';
+                this.form.reset();
+                this.showPopup();
+            }
+
+            showPopup() {
+                this.successCircle.classList.remove('visible');
+                this.successText.classList.remove('visible');
+                this.popupOverlay.classList.add('visible');
+                this.createParticles();
+                setTimeout(() => {
+                    this.successCircle.classList.add('visible');
+                }, 300);
+                setTimeout(() => {
+                    this.successText.classList.add('visible');
+                }, 800);
+                setTimeout(() => {
+                    this.hidePopup();
+                }, 5000);
+            }
+
+            hidePopup() {
+                this.popupOverlay.classList.remove('visible');
+                setTimeout(() => {
+                    const particles = this.popupOverlay.querySelectorAll('.particle');
+                    particles.forEach(particle => particle.remove());
+                }, 500);
+            }
+
+            handleOverlayClick(e) {
+                if (e.target === this.popupOverlay) {
+                    this.hidePopup();
+                }
+            }
+
+            createParticles() {
+                const modal = this.popupOverlay.querySelector('.popup-modal');
+                for (let i = 0; i < 12; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    const x = 20 + Math.random() * 60;
+                    const y = 20 + Math.random() * 60;
+                    particle.style.left = `${x}%`;
+                    particle.style.top = `${y}%`;
+                    particle.style.animationDelay = `${i * 0.1}s`;
+                    modal.appendChild(particle);
+                    setTimeout(() => {
+                        particle.classList.add('animate');
+                    }, 300 + i * 100);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new ThankYouPopup();
+        });
+    </script>
+</body>
+
+</html>
